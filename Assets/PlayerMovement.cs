@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GrounMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -47,10 +48,19 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision){
         Debug.Log(collision);
-        if (collision.gameObject.tag == "floor"){
+        Collider2D collider = collision.collider;
+        Vector2 center = collider.bounds.center;
+        Vector2 contactPoint = collision.contacts[0].point;
+        float lefSide = center.x - (collider.bounds.size.x/2);
+        bool isValid = contactPoint.y > center.y && contactPoint.x > lefSide;
+        if (collision.gameObject.tag == "floor" && isValid){
             anim.SetBool("isOnGround", true);
             jumpsLeft = 2;
             Debug.Log("touched floor");
+        }else{
+            
+            jumpsLeft = 0;
+            collider.enabled=false;
         }
 
     }
