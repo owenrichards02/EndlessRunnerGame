@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -48,6 +49,15 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isOnGround", true);
             jumpsLeft = 2;
             Debug.Log("touched floor");
+        }
+
+    }
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.gameObject.tag == "death"){
+            //do death stuff
+            Debug.Log("dead g");
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
     }
 }
