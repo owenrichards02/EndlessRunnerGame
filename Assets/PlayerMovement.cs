@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using GrounMovement;
+//using GroundMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             jumpsLeft = 2;
             Debug.Log("touched floor");
         }else{
-            
+            //GroundMovement.rb.velocity = new Vector2(groundSpeed * -1.0f, rb.velocity.y);
             jumpsLeft = 0;
             collider.enabled=false;
         }
