@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
+    private Collider2D thisCollider;
     [SerializeField] private new Rigidbody2D camera;
     public float jumpSpeed;
     private int jumpsLeft;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        thisCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         jumpsLeft = 2;
@@ -44,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
             sinceLast += Time.deltaTime;
         }
 
-        
     }
 
     void OnCollisionEnter2D(Collision2D collision){
@@ -72,6 +73,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    void OnCollisionExit2D(Collision2D collision){
+        anim.SetBool("isOnGround", false);
+        if (jumpsLeft == 2){
+                jumpsLeft = 1;
+        }
+
+    }
+
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag == "death"){
             //do death stuff
@@ -80,4 +90,5 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(scene.name);
         }
     }
+
 }
