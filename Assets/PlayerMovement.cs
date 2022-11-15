@@ -11,9 +11,12 @@ public class PlayerMovement : MonoBehaviour
     private int jumpsLeft;
     private float sinceLast;
 
+    private Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         jumpsLeft = 2;
     }
 
@@ -25,7 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.3){
             Debug.Log("jumping");
+            anim.SetBool("isOnGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            if (jumpsLeft == 1){
+                anim.SetTrigger("onDoubleJump");
+            }
             jumpsLeft = jumpsLeft - 1;
             sinceLast = 0;
         }else{
@@ -38,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision){
         Debug.Log(collision);
         if (collision.gameObject.tag == "floor"){
+            anim.SetBool("isOnGround", true);
             jumpsLeft = 2;
             Debug.Log("touched floor");
         }
