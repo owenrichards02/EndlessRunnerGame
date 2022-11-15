@@ -19,7 +19,6 @@ public class GroundSpawning : MonoBehaviour
     {
         timeSince += Time.deltaTime;
         if (timeSince > spawnInterval){
-            
             Debug.Log("ground spawned");
             GameObject justSpawned = Instantiate(groundPrefab);
             justSpawned.transform.position = spawnPosition;
