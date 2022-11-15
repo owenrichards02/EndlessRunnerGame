@@ -1,0 +1,10 @@
+
+-- SPAWNING --
+Sections of multiple jumps - interesting jumps inbetween the jumps
+Sections are the same width - first and last buildings touch the edges of sections
+Spawn sections in a sequence that makes it possible to go between sections
+Spacing inside of sections needs to change with speed
+Spacing inside of the sections might also change with height or width of last building in current section and next building in next section
+
+-- LOOKS --
+Screen shake when hes about to die

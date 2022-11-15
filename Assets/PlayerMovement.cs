@@ -31,8 +31,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("jumping");
             anim.SetBool("isOnGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            if (jumpsLeft == 1){
-                anim.SetTrigger("onDoubleJump");
+            if (jumpsLeft == 2){
+                anim.SetTrigger("onFirstJump");
+            }else {
+                anim.SetTrigger("onSecondJump");
             }
             jumpsLeft = jumpsLeft - 1;
             sinceLast = 0;
