@@ -407,6 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 519420033}
   jumpSpeed: 10
+  gm: {fileID: 0}
 --- !u!95 &217082209
 Animator:
   serializedVersion: 4
@@ -877,6 +878,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -959877094663026723, guid: 391df5488f454fe4592308476c02c340, type: 3}
+      propertyPath: m_Constraints
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -959877094663026723, guid: 391df5488f454fe4592308476c02c340, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5587249773343208201, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: m_RootOrder
       value: 1
