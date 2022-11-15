@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
-    public Rigidbody2D camera;
+    [SerializeField] private new Rigidbody2D camera;
     public float jumpSpeed;
     private int jumpsLeft;
     private float sinceLast;
