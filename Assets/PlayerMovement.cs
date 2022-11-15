@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using GroundMovement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed;
     private int jumpsLeft;
     private float sinceLast;
+
+    public GroundMovement gm;
 
     private Animator anim;
 
@@ -26,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         camera.velocity = rb.velocity;
-
 
         if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.3){
             Debug.Log("jumping");
@@ -58,7 +59,14 @@ public class PlayerMovement : MonoBehaviour
             jumpsLeft = 2;
             Debug.Log("touched floor");
         }else{
-            //GroundMovement.rb.velocity = new Vector2(groundSpeed * -1.0f, rb.velocity.y);
+            GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
+            foreach(GameObject go in allObjects){ 
+                if (go.activeInHierarchy && go.tag=="floor"){
+                    gm=go.GetComponent<GroundMovement>();
+                    gm.groundSpeed=0.0f;
+                } 
+            }
+
             jumpsLeft = 0;
             collider.enabled=false;
         }
