@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float sinceLast;
 
     public GroundMovement gm;
+    private GameController gc;
 
     private Animator anim;
 
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         thisCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        gc = GetComponent<GameController>();
         jumpsLeft = 2;
     }
 
@@ -85,9 +87,7 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag == "death"){
             //do death stuff
-            Debug.Log("dead g");
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            gc.died();
         }
     }
 
