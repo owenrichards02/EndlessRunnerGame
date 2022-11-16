@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator anim;
 
+    // Tutorial UI elements
+    public GameObject[] popUps;
+    private int popUpIndex;
+
     void Start()
     {
         thisCollider = GetComponent<Collider2D>();
@@ -31,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         camera.velocity = rb.velocity;
 
-        if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.3){
+        if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.6){
             Debug.Log("jumping");
             anim.SetBool("isOnGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
@@ -55,7 +59,9 @@ public class PlayerMovement : MonoBehaviour
         Vector2 contactPoint = collision.contacts[0].point;
         float lefSide = center.x - (collider.bounds.size.x/2);
         bool isValid = contactPoint.y > center.y && contactPoint.x > lefSide;
-        if (collision.gameObject.tag == "floor" && isValid){
+        
+        // edited this if statement so I get the tags for the tutorial
+        if ((collision.gameObject.tag == "floor"||collision.gameObject.tag=="lastsinglejump"||collision.gameObject.tag=="lastdoublejump") && isValid){
             anim.SetBool("isOnGround", true);
             jumpsLeft = 2;
             Debug.Log("touched floor");
