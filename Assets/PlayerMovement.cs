@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         camera.velocity = rb.velocity;
 
-        if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.6){
+        if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.5){
             Debug.Log("jumping");
             anim.SetBool("isOnGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
