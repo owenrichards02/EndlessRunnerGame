@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundSpeed: 9
+  groundSpeedDefault: 9
 --- !u!50 &-959877094663026723
 Rigidbody2D:
   serializedVersion: 4

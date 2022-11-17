@@ -6,6 +6,7 @@ public class GroundSpawning : MonoBehaviour
 {
     private float timeSince;
     public float spawnInterval;
+    public float spawnIntervalDefault;
     public float initialDelay; //NEED TO IMPLEMENT
     public Vector2 spawnPosition;
     public GameObject section1;
@@ -19,6 +20,7 @@ public class GroundSpawning : MonoBehaviour
         prefabs.Add(section1);
         prefabs.Add(section2);
         initialDelay = 2.0f;
+        spawnInterval = spawnIntervalDefault;
     }
 
     // Update is called once per frame

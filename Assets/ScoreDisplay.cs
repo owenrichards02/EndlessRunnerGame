@@ -8,7 +8,7 @@ public class ScoreDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
     private int score;
-    public int scoreMultiplier;
+    public float scoreMultiplier;
     private TMP_Text scoreText;
     private float timeSince;
     void Start()
@@ -22,7 +22,7 @@ public class ScoreDisplay : MonoBehaviour
     void Update()
     {
         timeSince += Time.deltaTime;
-        score = scoreMultiplier * (int)(50.0f * timeSince);
+        score = (int)(scoreMultiplier * (50.0f * timeSince));
         scoreText.text = "SCORE: " + score; 
     }
 

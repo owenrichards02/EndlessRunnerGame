@@ -69,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
                     gm.groundSpeed=0.0f;
                 } 
             }
+            // dont need gc.died();
+            gc.groundMultiplier = 0;
 
             jumpsLeft = 0;
             collider.enabled=false;
