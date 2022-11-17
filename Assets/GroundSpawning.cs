@@ -17,8 +17,6 @@ public class GroundSpawning : MonoBehaviour
     void Start()
     {
         timeSince = 0.0f;
-        prefabs.Add(section1);
-        prefabs.Add(section2);
         initialDelay = 2.0f;
         spawnInterval = spawnIntervalDefault;
     }

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +16,8 @@ public class GameController : MonoBehaviour
     private GameObject spawner;
     private GroundMovement gm;
     private ScaleBackg sbg;
+    private DepthOfField dof = null;
+    public Volume vol;
 
     private float multiplier;
     public float maxMultiplier;
@@ -55,6 +60,11 @@ public class GameController : MonoBehaviour
                 go.SetActive(false);
             }
         }
+        if (dof!=null){
+            if (dof.focusDistance.value > 1.0f){
+                dof.focusDistance.value -=1f;
+            }
+        }
 
         gs.spawnInterval = gs.spawnIntervalDefault / multiplier; //decrease spawn interval
         sd.scoreMultiplier = multiplier; // increase score
@@ -68,7 +78,9 @@ public class GameController : MonoBehaviour
     public void died(){
         Debug.Log("dead g");
         //temp reload
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        //Scene scene = SceneManager.GetActiveScene();
+        //SceneManager.LoadScene(scene.name);
+        vol.profile.TryGet<DepthOfField>(out dof);
+        //need to set dof=null on the reload
     }
 }
