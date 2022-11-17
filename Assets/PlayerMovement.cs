@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private int jumpsLeft;
     private float sinceLast;
 
-    public GroundMovement gm;
+    private GroundMovement gm;
     private GameController gc;
 
     private Animator anim;
