@@ -408,7 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 519420033}
   jumpSpeed: 10
-  gm: {fileID: 0}
+  popUps: []
 --- !u!95 &217082209
 Animator:
   serializedVersion: 4
