@@ -47,7 +47,13 @@ public class GameController : MonoBehaviour
             if (go.activeInHierarchy && go.tag=="floor"){
                 gm=go.GetComponent<GroundMovement>();
                 gm.groundSpeed = multiplier * gm.groundSpeedDefault * groundMultiplier;
-            } 
+            }else if (go.activeInHierarchy && go.tag=="enemy"){
+                gm=go.GetComponent<GroundMovement>();
+                gm.groundSpeed = multiplier * gm.groundSpeedDefault * groundMultiplier;
+            }
+            if (go.transform.position.x < -200){
+                go.SetActive(false);
+            }
         }
 
         gs.spawnInterval = gs.spawnIntervalDefault / multiplier; //decrease spawn interval
