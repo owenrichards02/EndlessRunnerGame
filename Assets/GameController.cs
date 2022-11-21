@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     private ScaleBackg sbg;
     private DepthOfField dof = null;
     public Volume vol;
+    public GameObject rt;
 
     private float multiplier;
     public float maxMultiplier;
@@ -35,6 +36,7 @@ public class GameController : MonoBehaviour
         gm = GameObject.Find("test ground 1").GetComponent<GroundMovement>(); //MAKE SURE TO MAKE THIS WORK LOL
         sbg = GameObject.Find("Backg").GetComponent<ScaleBackg>();
         groundMultiplier = 1;
+        rt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,11 +65,20 @@ public class GameController : MonoBehaviour
         if (dof!=null){
             if (dof.focusDistance.value > 1.0f){
                 dof.focusDistance.value -=1f;
+            }else{
+                rt.SetActive(true);
             }
         }
 
         gs.spawnInterval = gs.spawnIntervalDefault / multiplier; //decrease spawn interval
         sd.scoreMultiplier = multiplier; // increase score
+
+        if(rt.activeInHierarchy){
+            if (Input.anyKey){
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+            }
+        }
 
         //cameraZoom
         Camera.main.orthographicSize = 10 * camMultiplier;
@@ -78,9 +89,9 @@ public class GameController : MonoBehaviour
     public void died(){
         Debug.Log("dead g");
         //temp reload
-        //Scene scene = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(scene.name);
+        
         vol.profile.TryGet<DepthOfField>(out dof);
         //need to set dof=null on the reload
+        
     }
 }
