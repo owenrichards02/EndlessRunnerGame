@@ -516,7 +516,7 @@ MonoBehaviour:
   popUps:
   - {fileID: 999556899}
   - {fileID: 2034850976}
-  - {fileID: 2034850976}
+  - {fileID: 2054737580}
 --- !u!1 &312269456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1833,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054737580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.9999897, y: 0.99998975, z: 0.99998975}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1842,7 +1842,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 67, y: 127}
+  m_AnchoredPosition: {x: 67, y: -46}
   m_SizeDelta: {x: 713.44, y: 65.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054737582
