@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         }else{
             GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
             foreach(GameObject go in allObjects){ 
-                if (go.activeInHierarchy && go.tag=="floor"){
+                if (go.activeInHierarchy && (go.tag=="floor" || go.tag=="lastsinglejump" || go.tag=="lastdoublejump")){
                     gm=go.GetComponent<GroundMovement>();
                     gm.groundSpeed=0.0f;
                 } 
