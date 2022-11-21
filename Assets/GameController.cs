@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
+using TMPro;
 
 
 public class GameController : MonoBehaviour
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour
     private DepthOfField dof = null;
     public Volume vol;
     public GameObject rt;
+    public TMP_Text fst;
 
     private float multiplier;
     public float maxMultiplier;
@@ -67,6 +70,7 @@ public class GameController : MonoBehaviour
                 dof.focusDistance.value -=1f;
             }else{
                 rt.SetActive(true);
+                fst.text = sd.score + " PTS"; 
             }
         }
 
@@ -91,6 +95,7 @@ public class GameController : MonoBehaviour
         //temp reload
         
         vol.profile.TryGet<DepthOfField>(out dof);
+        sd.alive = false;
         //need to set dof=null on the reload
         
     }
