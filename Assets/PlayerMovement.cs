@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         //TimeWarp stuff
         slowMoText.SetActive(sinceLastSlowDown > 7.0f);
 
-        if(Input.GetKey(KeyCode.R) && sinceLastSlowDown > 7.0f){
+        if(Input.GetKey(KeyCode.Q) && sinceLastSlowDown > 7.0f){
             Time.timeScale = 0.5f;
             sinceLastSlowDown = 0.0f;
             slowTimer = 0.0f;
