@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private new Rigidbody2D camera;
     public float jumpSpeed;
     private int jumpsLeft;
-    private float sinceLast;
+    private float sinceLastJump;
+    private float sinceLastSlowDown;
+    private float slowTimer;
+    public GameObject slowMoText;
 
     private GroundMovement gm;
     private GameController gc;
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         gc = GetComponent<GameController>();
         jumpsLeft = 2;
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         camera.velocity = rb.velocity;
 
-        if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLast > 0.25){
+        if(Input.GetKey(KeyCode.W) && jumpsLeft > 0 && sinceLastJump > 0.25){
             Debug.Log("jumping");
             anim.SetBool("isOnGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
@@ -47,9 +51,29 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetTrigger("onSecondJump");
             }
             jumpsLeft = jumpsLeft - 1;
-            sinceLast = 0;
+            sinceLastJump = 0;
         }else{
-            sinceLast += Time.deltaTime;
+            sinceLastJump += Time.deltaTime;
+        }
+
+
+        //TimeWarp stuff
+        slowMoText.SetActive(sinceLastSlowDown > 7.0f);
+
+        if(Input.GetKey(KeyCode.R) && sinceLastSlowDown > 7.0f){
+            Time.timeScale = 0.5f;
+            sinceLastSlowDown = 0.0f;
+            slowTimer = 0.0f;
+        }
+
+        if (Time.timeScale == 1.0f){
+            sinceLastSlowDown += Time.deltaTime;
+        }{
+            slowTimer += Time.deltaTime;
+        }
+
+        if (slowTimer > 3.0f){
+            Time.timeScale = 1.0f;
         }
 
     }
@@ -96,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         if (collider.gameObject.tag == "death"){
             //do death stuff
             gc.died();
+            //GameObject.Find("Player").SetActive(false);
         }
     }
 
