@@ -540,7 +540,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1006,7 +1006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5587249773343208204, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: m_TagString
-      value: lastdoublejump
+      value: floor
       objectReference: {fileID: 0}
     - target: {fileID: 8196089099323027829, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: groundSpeed
@@ -2459,7 +2459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5587249773343208204, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: m_TagString
-      value: lastdoublejump
+      value: lasttimewarp
       objectReference: {fileID: 0}
     - target: {fileID: 8196089099323027829, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: groundSpeed
@@ -3051,7 +3051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5587249773343208204, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: m_TagString
-      value: lastdoublejump
+      value: floor
       objectReference: {fileID: 0}
     - target: {fileID: 8196089099323027829, guid: 391df5488f454fe4592308476c02c340, type: 3}
       propertyPath: groundSpeed
