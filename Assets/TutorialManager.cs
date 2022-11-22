@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class TutorialManager : MonoBehaviour
     private int popUpIndex; // index of instructions in the tutorial
     //public PlayerMovement pm;
     private int jumpsLeft;
+    //private DepthOfField dof = null;
+    public GameObject rt;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,21 @@ public class TutorialManager : MonoBehaviour
                 popUps[i].SetActive(false); // press W twice or hold for double jump activated here
             }
         }
+        
+        if(popUpIndex==3){
+            // this thing is test purposes only, after making the death just like in the game, we have to put it inside.
+            Scene scene = SceneManager.GetActiveScene();
+            if (Input.GetKey(KeyCode.R)){
+                SceneManager.LoadScene(scene.name);
+            }
+            Scene scene2 = SceneManager.GetSceneByName("SampleScene");
+            if (Input.GetKey(KeyCode.G)){
+                SceneManager.LoadScene("SampleScene");
+
+            }
+        }
+        
+        
         
           
     }
@@ -49,5 +67,14 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.gameObject.tag == "death"){
+            Debug.Log("We're in the death zone of the tutorial");
+            popUpIndex = 3;
+        }
+    }
+    
     
 }
