@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject slowMoText;
     [SerializeField] private AudioSource jumpingSound;
     [SerializeField] private AudioSource deathSound;
+    private AudioSource gameSound;
     
 
     private GroundMovement gm;
@@ -125,7 +126,10 @@ public class PlayerMovement : MonoBehaviour
             //do death stuff
             gc.died();
             deathSound.Play();
+            // gameSound = (AudioSource)GameObject.Find("Game");
+            // gameSound.Stop();
             //GameObject.Find("Player").SetActive(false);
+            GetComponent<AudioSource>().Stop();
         }
     }
 

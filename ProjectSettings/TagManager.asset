@@ -8,6 +8,7 @@ TagManager:
   - death
   - lastsinglejump
   - lastdoublejump
+  - lasttimewarp
   layers:
   - Default
   - TransparentFX
