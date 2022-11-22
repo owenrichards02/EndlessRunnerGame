@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     private float sinceLastSlowDown;
     private float slowTimer;
     public GameObject slowMoText;
+    [SerializeField] private AudioSource jumpingSound;
+    [SerializeField] private AudioSource deathSound;
+    
 
     private GroundMovement gm;
     private GameController gc;
@@ -45,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("jumping");
             anim.SetBool("isOnGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            jumpingSound.Play();
             if (jumpsLeft == 2){
                 anim.SetTrigger("onFirstJump");
             }else {
@@ -87,14 +91,14 @@ public class PlayerMovement : MonoBehaviour
         bool isValid = contactPoint.y > center.y && contactPoint.x > lefSide;
         
         // edited this if statement so I get the tags for the tutorial
-        if ((collision.gameObject.tag == "floor"||collision.gameObject.tag=="lastsinglejump"||collision.gameObject.tag=="lastdoublejump") && isValid){
+        if ((collision.gameObject.tag == "floor"||collision.gameObject.tag=="lastsinglejump"||collision.gameObject.tag=="lastdoublejump"||collision.gameObject.tag=="lasttimewarp") && isValid){
             anim.SetBool("isOnGround", true);
             jumpsLeft = 2;
             Debug.Log("touched floor");
         }else{
             GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
             foreach(GameObject go in allObjects){ 
-                if (go.activeInHierarchy && (go.tag=="floor" || go.tag=="lastsinglejump" || go.tag=="lastdoublejump")){
+                if (go.activeInHierarchy && (go.tag=="floor" || go.tag=="lastsinglejump" || go.tag=="lastdoublejump"||collision.gameObject.tag=="lasttimewarp")){
                     gm=go.GetComponent<GroundMovement>();
                     gm.groundSpeed=0.0f;
                 } 
@@ -120,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
         if (collider.gameObject.tag == "death"){
             //do death stuff
             gc.died();
+            deathSound.Play();
             //GameObject.Find("Player").SetActive(false);
         }
     }

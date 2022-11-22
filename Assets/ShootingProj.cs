@@ -9,6 +9,7 @@ public class ShootingProj : MonoBehaviour
     private float timeSinceLast;
     public GameObject projectile;
     private Transform dronetf;
+    [SerializeField] private AudioSource laserSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class ShootingProj : MonoBehaviour
 
     void shootProj(){
         var positionShot = new Vector2 (dronetf.position.x - 1.1f, dronetf.position.y - 0.4f);
+        laserSound.Play();
         GameObject proj = Instantiate(projectile);
         proj.transform.position = positionShot;
         proj.GetComponent<Rigidbody2D>().velocity = new Vector2(-1.0f * ((GetComponent<GroundMovement>().groundSpeed) + 3), 0);

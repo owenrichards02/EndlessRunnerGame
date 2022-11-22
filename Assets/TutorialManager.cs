@@ -30,8 +30,9 @@ public class TutorialManager : MonoBehaviour
             }
         }
         
-        if(popUpIndex==3){
+        if(popUpIndex==4){
             // this thing is test purposes only, after making the death just like in the game, we have to put it inside.
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Scene scene = SceneManager.GetActiveScene();
             if (Input.GetKey(KeyCode.R)){
                 SceneManager.LoadScene(scene.name);
@@ -64,6 +65,13 @@ public class TutorialManager : MonoBehaviour
                 popUpIndex++;
                 Debug.Log("more UI instructions here if we want to add something to the tutorial");
             }
+        }else if(popUpIndex==2){
+            if(collision.gameObject.tag=="lasttimewarp"){
+                popUpIndex++;
+                Debug.Log("entered time warp zone");
+            }
+            
+            
         }
     }
 
@@ -72,7 +80,7 @@ public class TutorialManager : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag == "death"){
             Debug.Log("We're in the death zone of the tutorial");
-            popUpIndex = 3;
+            popUpIndex = 4;
         }
     }
     
