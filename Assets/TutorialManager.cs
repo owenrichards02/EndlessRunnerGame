@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -12,10 +15,15 @@ public class TutorialManager : MonoBehaviour
     //private DepthOfField dof = null;
     public GameObject rt;
     // Start is called before the first frame update
+
+
+    private DepthOfField dof = null;
+    public Volume vol;
     void Start()
     {
         // we start in the UI saying press W to jump so:
         popUpIndex=0;
+        rt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,7 +52,13 @@ public class TutorialManager : MonoBehaviour
             }
         }
         
-        
+        if (dof!=null){
+            if (dof.focusDistance.value > 1.0f){
+                dof.focusDistance.value -=1f;
+            }else{
+                rt.SetActive(true);
+            }
+        }
         
           
     }
@@ -81,6 +95,7 @@ public class TutorialManager : MonoBehaviour
         if (collider.gameObject.tag == "death"){
             Debug.Log("We're in the death zone of the tutorial");
             popUpIndex = 4;
+            vol.profile.TryGet<DepthOfField>(out dof);  
         }
     }
     
